@@ -45,7 +45,7 @@ export const TokenForm = () => {
               {...register("name", {
                 required: "Введіть",
                 pattern: {
-                  value: /^[A-Za-z][A-Za-z0-9]*$/,
+                  value: /^[A-Za-z][A-Za-z0-9\s\S]{0,}$/,
                   message: "noBro",
                 },
               })}
@@ -88,7 +88,7 @@ export const TokenForm = () => {
               {...register("description", {
                 required: "Введіть",
                 pattern: {
-                  value: /^[A-Za-z][A-Za-z0-9]*$/,
+                  value: /^[A-Za-z][A-Za-z0-9\s\S]{0,}$/,
                   message: "noBro",
                 },
               })}
