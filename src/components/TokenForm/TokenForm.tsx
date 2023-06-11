@@ -1,4 +1,4 @@
-import { Controller, useForm } from "react-hook-form";
+import { Controller, FieldValues, SubmitHandler, useForm } from "react-hook-form";
 import { StyledInput } from "../Input/Input";
 import { StyledButton } from "../Button/Button";
 import { FormTitle, StyledTitle } from "../Title/Title";
@@ -9,7 +9,7 @@ import { useAppDispatch, useAppSelector } from "@/redux/app/hooks";
 import { setMintingStatus } from "@/redux/slice/appSlice";
 import { useEffect } from "react";
 
-export interface SubmitData {
+export interface SubmitData extends FieldValues {
   name: string;
   symbol: string;
   description: string;
@@ -30,7 +30,7 @@ export const TokenForm = () => {
     control,
     formState: { errors },
   } = useForm();
-  const onSubmit = async (data: SubmitData) => {
+  const onSubmit: SubmitHandler<SubmitData> = async (data) => {
     dispatch(setMintingStatus("minting"));
     const res = await createToken(connection, publicKey!, sendTransaction, wallet, data);
     dispatch(setMintingStatus(res));

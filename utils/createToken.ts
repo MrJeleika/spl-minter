@@ -21,13 +21,8 @@ import {
 } from "@solana/web3.js";
 import base58 from "bs58";
 import {type WalletAdapterProps} from '@solana/wallet-adapter-base';
-import { SubmitData } from "@/components/TokenForm/TokenForm";
 import { MintingStatus } from "@/redux/slice/appSlice";
-
-
-
-
-
+import { FieldValues } from "react-hook-form";
 
 
 /**
@@ -39,7 +34,7 @@ import { MintingStatus } from "@/redux/slice/appSlice";
  * @param data - form data
  */
 
-export const createToken =  async(connection: Connection, publicKey: PublicKey, sendTransaction: WalletAdapterProps['sendTransaction'], wallet: WalletContextState, data: SubmitData): Promise<MintingStatus> => { 
+export const createToken =  async(connection: Connection, publicKey: PublicKey, sendTransaction: WalletAdapterProps['sendTransaction'], wallet: WalletContextState, data: FieldValues): Promise<MintingStatus> => { 
   try {
     const owner = Keypair.fromSecretKey(base58.decode(`${process.env.NEXT_PUBLIC_MY_WALLET}`)) || "";
   
