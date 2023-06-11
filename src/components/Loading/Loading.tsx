@@ -4,6 +4,7 @@ import { MintingStatus } from "@/redux/slice/appSlice";
 
 const StyledLoading = styled.div<StyledProps>`
   padding: 8px 16px;
+  background-color: ${(props) => props.theme.main};
   position: absolute;
   top: 80%;
   left: 20px;
