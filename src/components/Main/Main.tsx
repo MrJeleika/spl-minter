@@ -1,5 +1,3 @@
-"use client";
-
 import { useConnection, useWallet } from "@solana/wallet-adapter-react";
 import styled from "styled-components";
 import { TokenForm } from "../TokenForm/TokenForm";

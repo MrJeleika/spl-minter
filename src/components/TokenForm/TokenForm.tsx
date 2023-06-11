@@ -8,6 +8,7 @@ import { Loading } from "../Loading/Loading";
 import { useAppDispatch, useAppSelector } from "@/redux/app/hooks";
 import { setMintingStatus } from "@/redux/slice/appSlice";
 import { useEffect } from "react";
+import styled from "styled-components";
 
 export const TokenForm = () => {
   const { connection } = useConnection();
@@ -15,6 +16,10 @@ export const TokenForm = () => {
   const wallet = useWallet();
   const dispatch = useAppDispatch();
   const { mintingStatus } = useAppSelector((state) => state.app);
+
+  const Form = styled.form`
+    margin-bottom: 70px;
+  `;
 
   const {
     register,
@@ -32,7 +37,7 @@ export const TokenForm = () => {
     <>
       <FormTitle $margin="0px 0px 40px 0px">SPL-TOKEN CREATOR</FormTitle>
       <Loading $status={mintingStatus} />
-      <form onSubmit={handleSubmit(onSubmit)}>
+      <Form onSubmit={handleSubmit(onSubmit)}>
         <StyledTitle>Token name:</StyledTitle>
         <Controller
           name="name"
@@ -140,7 +145,7 @@ export const TokenForm = () => {
           )}
         />
         <StyledButton type="submit">Create</StyledButton>
-      </form>
+      </Form>
     </>
   );
 };

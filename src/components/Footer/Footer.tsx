@@ -7,7 +7,7 @@ const StyledFooter = styled.footer`
   bottom: 0;
   width: 100%;
   background-color: ${(props) => props.theme.main};
-  padding: 50px 30px 20px 30px;
+  padding: 0px 30px 20px 30px;
 `;
 const FooterBody = styled.div`
   max-width: 1100px;

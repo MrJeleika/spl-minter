@@ -1,4 +1,3 @@
-"use client";
 import { WalletMultiButton } from "@solana/wallet-adapter-react-ui";
 import styled from "styled-components";
 import { Logo } from "../svg/Logo";
