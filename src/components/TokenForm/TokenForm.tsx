@@ -9,14 +9,6 @@ import { useAppDispatch, useAppSelector } from "@/redux/app/hooks";
 import { setMintingStatus } from "@/redux/slice/appSlice";
 import { useEffect } from "react";
 
-export interface SubmitData extends FieldValues {
-  name: string;
-  symbol: string;
-  description: string;
-  image: string;
-  amount: number;
-}
-
 export const TokenForm = () => {
   const { connection } = useConnection();
   const { publicKey, sendTransaction } = useWallet();
@@ -30,7 +22,7 @@ export const TokenForm = () => {
     control,
     formState: { errors },
   } = useForm();
-  const onSubmit: SubmitHandler<SubmitData> = async (data) => {
+  const onSubmit: SubmitHandler<FieldValues> = async (data) => {
     dispatch(setMintingStatus("minting"));
     const res = await createToken(connection, publicKey!, sendTransaction, wallet, data);
     dispatch(setMintingStatus(res));
