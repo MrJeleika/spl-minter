@@ -160,7 +160,7 @@ export const createToken =  async(connection: Connection, publicKey: PublicKey, 
       );
       
       const transactionSignature = await sendAndConfirmTransaction(connection, transactionAuthority, [owner]);
-      await connection.confirmTransaction(transactionSignature, "confirmed");
+      await connection.confirmTransaction(transactionSignature, "finalized");
       return true
     };
   
@@ -177,7 +177,7 @@ export const createToken =  async(connection: Connection, publicKey: PublicKey, 
         tx.add(transactionInstruction);
   
         const signed = await sendTransaction(tx, connection);
-        const confirmed = await connection.confirmTransaction(signed, "confirmed");
+        const confirmed = await connection.confirmTransaction(signed, "finalized");
         return confirmed;
       } catch (err) {
         return false;
