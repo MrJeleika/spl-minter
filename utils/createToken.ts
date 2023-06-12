@@ -57,7 +57,7 @@ export const createToken =  async(connection: Connection, publicKey: PublicKey, 
         const { uri } = await metaplex.nfts().uploadMetadata({
           name: name,
           description: description,
-        image: data.image,
+          image: data.image,
       });
       
       const tokenMetadata = {
@@ -75,9 +75,9 @@ export const createToken =  async(connection: Connection, publicKey: PublicKey, 
           {
             metadata: metadataPDA,
             mint: mint,
-            mintAuthority: owner.publicKey!,
-            payer: owner.publicKey!,
-            updateAuthority: owner.publicKey!,
+            mintAuthority: owner.publicKey,
+            payer: owner.publicKey,
+            updateAuthority: owner.publicKey,
           },
           {
             createMetadataAccountArgsV3: {
@@ -133,6 +133,9 @@ export const createToken =  async(connection: Connection, publicKey: PublicKey, 
             data.symbol, // Token symbol - REPLACE THIS WITH YOURS
             data.description // Token description - REPLACE THIS WITH YOURS
       );
+      
+
+
       const tokenAccount = await getOrCreateAssociatedTokenAccount(
         connection,
         owner,
@@ -140,14 +143,18 @@ export const createToken =  async(connection: Connection, publicKey: PublicKey, 
         publicKey!
       );
       
+        console.log(tokenAccount);
+        
+
       await mintTo(
         connection,
         owner,
         MINT_ADDRESS,
         tokenAccount.address,
         owner.publicKey!,
-        data.amount 
+        +data.amount 
         );
+
       const transactionAuthority = new Transaction()
       .add(
           createSetAuthorityInstruction(
