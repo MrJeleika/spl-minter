@@ -4,7 +4,7 @@ import { StyledButton } from "../Button/Button";
 import { FormTitle, StyledTitle } from "../Title/Title";
 import { createToken } from "../../../utils/createToken";
 import { useConnection, useWallet } from "@solana/wallet-adapter-react";
-import { Loading } from "../Loading/Loading";
+import { Minting } from "../Minting/Minting";
 import { useAppDispatch, useAppSelector } from "@/redux/app/hooks";
 import { setMintingStatus } from "@/redux/slice/appSlice";
 import { useEffect } from "react";
@@ -36,7 +36,7 @@ export const TokenForm = () => {
   return (
     <>
       <FormTitle $margin="0px 0px 40px 0px">SPL-TOKEN CREATOR</FormTitle>
-      <Loading $status={mintingStatus} />
+      <Minting $status={mintingStatus} />
       <Form onSubmit={handleSubmit(onSubmit)}>
         <StyledTitle>Token name:</StyledTitle>
         <Controller

@@ -65,7 +65,7 @@ const StyledH1 = styled(H1)<StyledProps>`
   }}
 `;
 
-export const Loading = ({ $status }: Props) => {
+export const Minting = ({ $status }: Props) => {
   return (
     <>
       {$status === "none" ? null : $status === "minting" ? (

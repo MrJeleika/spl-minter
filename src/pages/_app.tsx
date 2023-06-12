@@ -11,6 +11,7 @@ import { dark, light } from "@/theme/theme";
 import { wrapper } from "@/redux/app/store";
 import { Provider } from "react-redux";
 import { useThemeDetector } from "@/hooks/useThemeDetector";
+import { Loading } from "@/components/Loading";
 
 function App({ Component, ...rest }: AppProps) {
   const { store, props } = wrapper.useWrappedStore(rest);
@@ -23,7 +24,7 @@ function App({ Component, ...rest }: AppProps) {
 
   return (
     <Provider store={store}>
-      <Suspense fallback="loading...">
+      <Suspense fallback={<Loading />}>
         <WalletProvider>
           <StyledComponentsRegistry>
             <ThemeProvider theme={theme ? dark : light}>
