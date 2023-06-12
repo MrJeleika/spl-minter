@@ -25,11 +25,13 @@ export const TokenForm = () => {
     register,
     handleSubmit,
     control,
+    reset,
     formState: { errors },
   } = useForm();
   const onSubmit: SubmitHandler<FieldValues> = async (data) => {
     dispatch(setMintingStatus("minting"));
     const res = await createToken(connection, publicKey!, sendTransaction, wallet, data);
+    if (res === "success") reset();
     dispatch(setMintingStatus(res));
     setTimeout(() => dispatch(setMintingStatus("none")), 7000);
   };
