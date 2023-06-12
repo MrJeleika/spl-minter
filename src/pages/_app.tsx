@@ -24,17 +24,17 @@ function App({ Component, ...rest }: AppProps) {
 
   return (
     <Provider store={store}>
-      <Suspense fallback={<Loading />}>
-        <WalletProvider>
-          <StyledComponentsRegistry>
+      <StyledComponentsRegistry>
+        <Suspense fallback={<Loading />}>
+          <WalletProvider>
             <ThemeProvider theme={theme ? dark : light}>
               <Layout>
                 <Component {...pageProps} />
               </Layout>
             </ThemeProvider>
-          </StyledComponentsRegistry>
-        </WalletProvider>
-      </Suspense>
+          </WalletProvider>
+        </Suspense>
+      </StyledComponentsRegistry>
     </Provider>
   );
 }
