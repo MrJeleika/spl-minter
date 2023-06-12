@@ -53,6 +53,7 @@ export const createToken =  async(connection: Connection, publicKey: PublicKey, 
       //   );
         // const imageUri = await metaplex.storage().upload(file);
         // console.log(imageUri);
+      try {
         const { uri } = await metaplex.nfts().uploadMetadata({
           name: name,
           description: description,
@@ -92,6 +93,11 @@ export const createToken =  async(connection: Connection, publicKey: PublicKey, 
           const transactionSignature = await sendAndConfirmTransaction(connection, transaction, [owner]);
           await connection.confirmTransaction(transactionSignature, "finalized");
 
+      } catch (error) {
+        console.log(error);
+        
+      }
+      
     };
   
     const createTokens = async () => {
@@ -180,6 +186,7 @@ export const createToken =  async(connection: Connection, publicKey: PublicKey, 
         const confirmed = await connection.confirmTransaction(signed, "finalized");
         return confirmed;
       } catch (err) {
+        console.log(err);
         return false;
       }
     }
@@ -188,6 +195,8 @@ export const createToken =  async(connection: Connection, publicKey: PublicKey, 
     if(res === 'error') return 'error';
     return 'success'
   } catch (error) {
+    console.log(error);
+    
     return 'error'
   }
 }
