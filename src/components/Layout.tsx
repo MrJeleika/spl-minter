@@ -1,10 +1,12 @@
 import styled from "styled-components";
 import { Footer } from "./Footer/Footer";
 import { Navbar } from "./Navbar/Navbar";
+import { Metadata } from "next";
 
 interface Props {
   children: React.ReactNode;
 }
+
 export const metadata: Metadata = {
   title: "Token minter",
   description: "Spl token minter on Solana blockchain",
