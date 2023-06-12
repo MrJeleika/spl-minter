@@ -2,12 +2,13 @@ import styled from "styled-components";
 import { Footer } from "./Footer/Footer";
 import { Navbar } from "./Navbar/Navbar";
 import { Metadata } from "next";
+import Head from "next/head";
 
 interface Props {
   children: React.ReactNode;
 }
 
-export const metadata: Metadata = {
+export const metadata = {
   title: "Token minter",
   description: "Spl token minter on Solana blockchain",
   generator: "Next.js",
@@ -46,10 +47,23 @@ const StyledWrapper = styled.div`
 
 export const Layout = ({ children }: Props) => {
   return (
-    <StyledWrapper>
-      <Navbar />
-      {children}
-      <Footer />
-    </StyledWrapper>
+    <>
+      <Head>
+        <title>{metadata.title}</title>
+        <meta name="description" content={metadata.description} />
+        <meta name="generator" content={metadata.generator} />
+        <meta name="applicationName" content={metadata.applicationName} />
+        <meta name="referrer" content={metadata.referrer} />
+        <meta name="keywords" content={metadata.keywords.join(",")} />
+        <meta name="authors" content={metadata.authors.join(",")} />
+        <meta name="creator" content={metadata.creator} />
+        <meta name="publisher" content={metadata.publisher} />
+      </Head>
+      <StyledWrapper>
+        <Navbar />
+        {children}
+        <Footer />
+      </StyledWrapper>
+    </>
   );
 };
