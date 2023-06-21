@@ -49,7 +49,7 @@ export const Navbar = () => {
     background-color: ${(props) => props.theme.main};
     padding: 10px 30px;
     width: 100%;
-    transition: background-color 0.3s ease-in-out;
+
     @media (max-width: 768px) {
       padding: 10px 10px 10px 14px;
     }

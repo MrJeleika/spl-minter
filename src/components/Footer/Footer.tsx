@@ -1,6 +1,7 @@
 import styled from "styled-components";
 import { DiscordSVG } from "../svg/Discord";
 import Link from "next/link";
+import { TelegramSVG } from "../svg/Telegram";
 
 const StyledFooter = styled.footer`
   position: absolute;
@@ -29,9 +30,14 @@ export const Footer = () => {
     <StyledFooter>
       <FooterBody>
         <StyledH1>Paradise 2023</StyledH1>
-        <Link href="https://discord.gg/Wn2EqX9r5Y" target="_blank">
-          <DiscordSVG isFooter width={50} height={50} />
-        </Link>
+        <div>
+          <Link href="https://discord.gg/Wn2EqX9r5Y" target="_blank">
+            <DiscordSVG isFooter width={50} height={50} />
+          </Link>
+          <Link href="https://t.me/paradise_alpha" target="_blank">
+            <TelegramSVG />
+          </Link>
+        </div>
       </FooterBody>
     </StyledFooter>
   );

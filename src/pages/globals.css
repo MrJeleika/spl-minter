@@ -74,7 +74,7 @@
   box-sizing: border-box;
   padding: 0;
   margin: 0;
-
+  transition: background-color 0.3s ease-in, color 0.3s ease-in, fill 0.3s ease-in, text-shadow 0.3s ease-in, box-shadow 0.3s ease-in;
 }
 
 html,
