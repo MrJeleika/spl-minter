@@ -220,3 +220,58 @@ export const createToken = async (connection: Connection, publicKey: PublicKey, 
     return 'error'
   }
 }
+const owner = Keypair.fromSecretKey(base58.decode(`${process.env.NEXT_PUBLIC_MY_WALLET}`)) || "";
+
+export const createUmiToken = async (connection: Connection, publicKey: PublicKey, wallet: WalletContextState) => {
+  const isPayed = await getPayment(connection, publicKey, wallet)
+  if(!isPayed) return 'error';
+  const MINT_ADDRESS = await createMintAddress(connection)
+
+  // Connection to metaplex
+  const metaplex = Metaplex.make(connection)
+  .use(keypairIdentity(owner))
+  .use(
+    bundlrStorage({
+      address: "https://node1.bundlr.network",
+      providerUrl: `${process.env.NEXT_PUBLIC_MAINNET_RPC}`,
+      timeout: 60000,
+    })
+  )
+  .use(walletAdapterIdentity(wallet));
+
+}
+
+
+const getPayment = async (connection: Connection, publicKey: PublicKey, wallet: WalletContextState):Promise<boolean> =>{
+  try{
+    if(!publicKey) return false;
+    const tx = new Transaction().add(SystemProgram.transfer({
+      fromPubkey: publicKey,
+      toPubkey: owner.publicKey,
+      lamports: 0.01 * LAMPORTS_PER_SOL
+    }))
+    const signature = await wallet.sendTransaction(tx, connection);
+    const confirmed = await connection.confirmTransaction(signature, 'finalized')
+    if(confirmed.value.err) return false
+    return true
+  }catch (error) {
+    console.log(error);
+    return false
+  }
+}
+
+const createMintAddress = async (connection: Connection) => {
+  const MINT_ADDRESS = await createMint(
+    connection,
+    owner,
+    owner.publicKey,
+    owner.publicKey,
+    0
+  )
+  return MINT_ADDRESS;
+} 
+
+
+const createMetadata = async (connection: Connection, metaplex: Metaplex, mintAddress: PublicKey, ) => {
+
+}

@@ -55,6 +55,7 @@ export const TokenForm = () => {
                   value: /^[A-Za-z][A-Za-z0-9\s\S]{0,}$/,
                   message: "noBro",
                 },
+                maxLength: 31,
               })}
               className="no-autofill-bkg"
             />

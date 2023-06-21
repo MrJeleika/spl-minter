@@ -19,11 +19,7 @@ const NoWallet = styled.div`
   color: ${(props) => props.theme.secondary};
 `;
 
-interface Props {
-  children: React.ReactNode;
-}
-
-export const Main = ({ children }: Props) => {
+export const Main = () => {
   const { connection } = useConnection();
   const { publicKey } = useWallet();
 

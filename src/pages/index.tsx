@@ -1,6 +1,4 @@
 import { Main } from "@/components/Main/Main";
-import { Navbar } from "@/components/Navbar/Navbar";
-import { Metadata } from "next";
 import { VT323 } from "next/font/google";
 import styled from "styled-components";
 
@@ -14,7 +12,7 @@ const StyledMain = styled.main`
 const Home = () => {
   return (
     <StyledMain className={vt.className}>
-      <Main>asdasd</Main>
+      <Main />
     </StyledMain>
   );
 };
